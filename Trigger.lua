@@ -1,6 +1,7 @@
 function(allstates, event, prefix, message, channel, sender)
     local COMM_PREFIX = "LHC40"
     local debug = false
+    local delay = 0.4
     local healers, tanks
     healers = {
         ["4474-01B77F35"] = "Вирга",
@@ -12,7 +13,7 @@ function(allstates, event, prefix, message, channel, sender)
         ["4474-00019EAC"] = "Ланнистер",
     }
     tanks = {
-        -- ["4474-01B77F35"] = "Вирга",
+        ["4474-01B77F35"] = "Вирга",
         -- ['4474-011A6F4A'] = "Абабусдубу",
         ["4474-023FAC61"] = "Каздэлл",
     }   
@@ -25,7 +26,7 @@ function(allstates, event, prefix, message, channel, sender)
             
             local spellName, _, icon = GetSpellInfo(spellID)
             
-            castTime = tonumber(castTime) + 0.3
+            castTime = tonumber(castTime) + delay
             if( not healer or not spellName or not amount or not tank ) then return end        
             endTime = GetTime() + (castTime or 1.5)
             if debug then print("HEAL:",healer, spellName, castTime or 1.5, amount, tank) end
@@ -41,7 +42,6 @@ function(allstates, event, prefix, message, channel, sender)
             state.caster = healer
             state.target = tank
             state.amount = amount
-            state.landed = ""
             state.autoHide = true
         end    
     end 
@@ -57,22 +57,27 @@ function(allstates, event, prefix, message, channel, sender)
     if (not commType or not spellID or not casterGUID ) then
         return false
     end
+    
     if( commType == "D" and arg1 and arg2 ) then    
         parseDirectHeal(casterGUID, spellID, tonumber(arg1), extraArg, strsplit(",", arg2))
-    end
-    
-    if( commType == "S") then
-        -- local interrupted = arg1 == "1" and true or false
+    elseif( commType == "S") then
         if arg1 then
             if healers[casterGUID] then
                 healer = healers[casterGUID]
                 allstates[healer] = allstates[healer] or {} -- error checking
                 local state = allstates[healer]
-                state.show = false
+                state.amount = "FAIL"
+                state.duration = 0.3
                 state.changed = true
-                --state.landed = "DONE"
+                
             end
         end
+    elseif( commType ==  "F") then
+        healer = healers[casterGUID]
+        local state = allstates[healer]
+        state.changed = true
+        --state.duration = arg2
+        state.expirationTime = arg2 + GetTime()
     end
     return true
 end
