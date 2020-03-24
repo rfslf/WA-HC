@@ -11,11 +11,13 @@ function(allstates, event, prefix, message, channel, sender)
         ["4474-0129C951"] = 'Офлайн',
         ["4474-023D7146"] = "Фармазолинка",
         ["4474-00019EAC"] = "Ланнистер",
+        ["4474-01383AE9"] = "Растрахан",
     }
     tanks = {
-        ["4474-01B77F35"] = "Вирга",
-        -- ['4474-011A6F4A'] = "Абабусдубу",
+        --["4474-01B77F35"] = "Вирга",
+        --['4474-011A6F4A'] = "Абабусдубу",
         ["4474-023FAC61"] = "Каздэлл",
+        ["4474-006630D4"] = "Мунг",
     }   
     local healer, tank
     
@@ -42,12 +44,13 @@ function(allstates, event, prefix, message, channel, sender)
             state.caster = healer
             state.target = tank
             state.amount = amount
+            state.failed = ""
             state.autoHide = true
         end    
     end 
     
     if (prefix ~= COMM_PREFIX) then return false end
-    if debug then print("RCV:", prefix, message, channel, sender) end
+    -- if debug then print("RCV:", prefix, message, channel, sender) end
     local commType, extraArg, spellID, arg1, arg2, arg3, arg4 = strsplit(":", message)
     local casterGUID = UnitGUID(Ambiguate(sender, "none"))
     casterGUID = string.sub(casterGUID, 8)
@@ -57,7 +60,6 @@ function(allstates, event, prefix, message, channel, sender)
     if (not commType or not spellID or not casterGUID ) then
         return false
     end
-    
     if( commType == "D" and arg1 and arg2 ) then    
         parseDirectHeal(casterGUID, spellID, tonumber(arg1), extraArg, strsplit(",", arg2))
     elseif( commType == "S") then
@@ -66,13 +68,15 @@ function(allstates, event, prefix, message, channel, sender)
                 healer = healers[casterGUID]
                 allstates[healer] = allstates[healer] or {} -- error checking
                 local state = allstates[healer]
-                state.amount = "FAIL"
+                state.amount = ""
+                state.failed = "FAILED"
                 state.duration = 0.3
                 state.changed = true
                 
             end
         end
     elseif( commType ==  "F") then
+        print(arg2)
         healer = healers[casterGUID]
         local state = allstates[healer]
         state.changed = true
