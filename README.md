@@ -9,7 +9,7 @@ Things you need to do yorself
 3. Open tabframe Trigger
 4. Open code of Trigger
 5. Find string with healers:
-    healers = {
+    <div>healers = {</div>
         --["4474-01B77F35"] = "Virgo",
         ["4474-01B77F36"] = "YourHealer"
     }
