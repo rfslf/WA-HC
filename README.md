@@ -11,7 +11,7 @@ Things you need to do yorself
 5. Find string with healers:
     <div>healers = {</div>
         <div>--["4474-01B77F35"] = "Virgo",</div>
-        <div>v["4474-01B77F36"] = "YourHealer"</div>
+        <div>["4474-01B77F36"] = "YourHealer"</div>
     }
 6. Insert GUID and name of your healers in that format. 
 You can discower GUID when you in group or raid with them via command /script print(UnitGUID("target")) by selecting them in target. 
