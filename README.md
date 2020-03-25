@@ -15,7 +15,7 @@ Things you need to do yorself
     }
 6. Insert GUID and name of your healers in that format. 
 You can discower GUID when you in group or raid with them via command /script print(UnitGUID("target")) by selecting them in target. 
-Command will write  GUID in defaul chat.
+Command will write  GUID in default chat.
 Two dashes mean not execute string, this is comment!
 7. Find string with tank:
     tanks = {</div>
