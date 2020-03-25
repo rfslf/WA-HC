@@ -10,17 +10,17 @@ Things you need to do yorself
 4. Open code of Trigger
 5. Find string with healers:
     <div>healers = {</div>
-        --["4474-01B77F35"] = "Virgo",
-        ["4474-01B77F36"] = "YourHealer"
+        <div>--["4474-01B77F35"] = "Virgo",</div>
+        <div>v["4474-01B77F36"] = "YourHealer"</div>
     }
 6. Insert GUID and name of your healers in that format. 
 You can discower GUID when you in group or raid with them via command /script print(UnitGUID("target")) by selecting them in target. 
 Command will write  GUID in defaul chat.
 Two dashes mean not execute string, this is comment!
 7. Find string with tank:
-    tanks = {
-        -- ["4474-01B77F35"] = "Virgo",
-        ["4474-01B77F37"] = "YourTank"
+    tanks = {</div>
+        <div>-- ["4474-01B77F35"] = "Virgo",</div>
+        <div>["4474-01B77F37"] = "YourTank"</div>
     } 
  8. Insert your main tank OR offtank like in step 6. 
  If you chose many tanks it will be many castbars on screen and you may be confused.
