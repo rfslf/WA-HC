@@ -1,4 +1,3 @@
--- version 1
 function(allstates, event, prefix, message, channel, sender)
     local COMM_PREFIX = "LHC40" -- prefix for healComm library messages
     local debug = false -- For debug messages, not for retail
@@ -13,11 +12,15 @@ function(allstates, event, prefix, message, channel, sender)
         ["4474-023D7146"] = "Фармазолинка",
         ["4474-00019EAC"] = "Ланнистер",
         ["4474-01383AE9"] = "Растрахан",
+        ["4474-0222CC86"] = "Зулкхалан",
+        ["4474-02417A95"] = "Укропсон",
     }
     tanks = {
         --["4474-01B77F35"] = "Вирга",
         --['4474-011A6F4A'] = "Абабусдубу",
         ["4474-023FAC61"] = "Каздэлл",
+        --["4474-02423AD0"] = "Тулио",
+        --["4474-017C370A"] = 'Вордер',
         --["4474-006630D4"] = "Мунг",
     }   
     
@@ -70,6 +73,7 @@ function(allstates, event, prefix, message, channel, sender)
             end
         end
     elseif( commType ==  "F") then
+        allstates[healer] = allstates[healer] or {} -- error checking
         local state = allstates[healer]
         state.changed = true
         state.expirationTime = arg2 + GetTime()
