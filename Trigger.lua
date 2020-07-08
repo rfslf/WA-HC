@@ -4,23 +4,30 @@ function(allstates, event, prefix, message, channel, sender)
     local delay = 0.1 -- Your dalay in ms
     local healers, tanks, healer, tank
     healers = {
-        ["4474-01B77F35"] = "Вирга",
         ['4474-011A6F4A'] = "Абабусдубу",
-        ["4474-024C054B"] = "Тичми",
-        ["4474-00B4FBD8"] = "Алиссия",
-        ["4474-0129C951"] = 'Офлайн',
-        ["4474-023D7146"] = "Фармазолинка",
+        ["4474-01B77F35"] = "Вирга",
+        ['4474-02380BC1'] = "Зумерочек",
+        ["4474-02466FB0"] = "Каргинос",
         ["4474-00019EAC"] = "Ланнистер",
+        ["4474-00E9584D"] = "Миронер",
+        ["4474-025183DF"] = "Обелис",
+        ["4474-024C054B"] = "Тичми",
         ["4474-01383AE9"] = "Растрахан",
-        ["4474-0222CC86"] = "Зулкхалан",
+        ["4474-01D9D904"] = "Роопо",
+        ["4474-022CB3A8"] = "Рэйнгхард",
+        ["4474-014CA5A5"] = "Сабраж",
         ["4474-02417A95"] = "Укропсон",
+        ["4474-0214D1A0"] = "Цйук",
+        ["4474-01EB4A05"] = "Цыганмикки",
+        ["4474-023D7146"] = "Фармазолинка",
     }
     tanks = {
+        --['4474-011A6F4A'] = "Абабусдубу",        
         --["4474-01B77F35"] = "Вирга",
-        --['4474-011A6F4A'] = "Абабусдубу",
         ["4474-023FAC61"] = "Каздэлл",
-        --["4474-02423AD0"] = "Тулио",
+        --["4474-01EE10D9"] = "Хлоптоп",
         --["4474-017C370A"] = 'Вордер',
+        --["4474-02423AD0"] = "Тулио",
         --["4474-006630D4"] = "Мунг",
     }   
     
@@ -73,11 +80,12 @@ function(allstates, event, prefix, message, channel, sender)
             end
         end
     elseif( commType ==  "F") then
-        allstates[healer] = allstates[healer] or {} -- error checking
-        local state = allstates[healer]
-        state.changed = true
-        state.expirationTime = arg2 + GetTime()
+        if healer then
+            allstates[healer] = allstates[healer] or {} -- error checking
+            local state = allstates[healer]
+            state.changed = true
+            state.expirationTime = arg2 + GetTime()
+        end
     end
     return true
 end
-
