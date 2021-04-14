@@ -17,4 +17,4 @@ Things you will need to do yourself:
 Two dashes mean not execute string, this is comment!
 If you choose many tanks it will be many castbars on screen and you may be confused.
 
-<font color="#ff0000">IMPORTANT! Version 2.0.0 was not fully tested</font>
+<font color="red">IMPORTANT! Version 2.0.0 was not fully tested</font>
